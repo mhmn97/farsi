@@ -1,0 +1,10 @@
+{
+  "freeLessonsCount": 6,
+  "publicKeyJwk": null,
+  "paymentInfo": {
+    "amount": 499000,
+    "cardNumber": "6104-3374-5433-7740",
+    "cardHolder": "ماجدی نیا",
+    "contact": "@mhmn1997"
+  }
+}
