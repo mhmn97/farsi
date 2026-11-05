@@ -7,9 +7,38 @@
     "crv": "P-256"
   },
   "paymentInfo": {
-    "amount": 499000,
     "cardNumber": "6104-3374-5433-7740",
     "cardHolder": "ماجدی نیا",
     "contact": "@mhmn1997"
-  }
+  },
+  "plans": [
+    {
+      "id": "1m",
+      "label": "۱ ماهه",
+      "days": 30,
+      "price": 89000
+    },
+    {
+      "id": "3m",
+      "label": "۳ ماهه",
+      "days": 90,
+      "price": 249000,
+      "discount": 7
+    },
+    {
+      "id": "6m",
+      "label": "۶ ماهه",
+      "days": 180,
+      "price": 459000,
+      "discount": 14,
+      "recommended": true
+    },
+    {
+      "id": "12m",
+      "label": "۱ ساله",
+      "days": 365,
+      "price": 799000,
+      "discount": 25
+    }
+  ]
 }

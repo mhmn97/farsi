@@ -9,12 +9,14 @@
   <meta name="apple-mobile-web-app-title" content="املاگو">
   <title>املاگو</title>
 
-  <script src="https://developer.eitaa.com/eitaa-web-app.js"></script>
+  <link rel="preconnect" href="https://developer.eitaa.com" crossorigin>
+  <script defer src="https://developer.eitaa.com/eitaa-web-app.js"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;600;700;800;900&display=swap"
     rel="stylesheet">
+  <link rel="preload" as="image" href="images/farsi3.png">
 
   <style>
     :root {
@@ -1345,9 +1347,6 @@
       }
     }
 
-    /* ════════════════════════════════════════════════════════════════════
-   MATCH GAME — دو ستون ۵ تایی
-   ════════════════════════════════════════════════════════════════════ */
     .match-area {
       flex: 1;
       display: flex;
@@ -1429,8 +1428,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
-        box-shadow 0.18s, opacity 0.3s;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s, opacity 0.3s;
       box-shadow: 0 4px 14px rgba(61, 44, 92, 0.18);
       -webkit-user-select: none;
       user-select: none;
@@ -1457,8 +1455,7 @@
 
     .match-card.selected {
       border-color: var(--primary-3);
-      box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.6),
-        0 6px 20px rgba(255, 217, 61, 0.5);
+      box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.6), 0 6px 20px rgba(255, 217, 61, 0.5);
       transform: translateY(-2px) scale(1.03);
       z-index: 2;
     }
@@ -1476,9 +1473,6 @@
       background: linear-gradient(135deg, var(--danger) 0%, var(--primary) 100%) !important;
     }
 
-    /* ════════════════════════════════════════════════════════════════════
-   GAME RESULT DETAILS (برای بازی ریزش)
-   ════════════════════════════════════════════════════════════════════ */
     .game-result-details {
       margin: 8px auto 16px;
       width: 100%;
@@ -1641,6 +1635,140 @@
       color: var(--text);
     }
 
+    .pm-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 12px;
+      font-weight: 700;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 6px 0 18px;
+    }
+
+    .plan-card {
+      position: relative;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 8px 14px;
+      cursor: pointer;
+      text-align: center;
+      font-family: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px rgba(255, 94, 126, 0.2);
+    }
+
+    .plan-card:active {
+      transform: scale(0.97);
+    }
+
+    .plan-card.recommended {
+      border-color: var(--primary);
+      background: linear-gradient(180deg, rgba(255, 94, 126, 0.08) 0%, var(--card) 100%);
+      box-shadow: 0 6px 20px rgba(255, 94, 126, 0.15);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -9px;
+      right: 50%;
+      transform: translateX(50%);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(255, 94, 126, 0.4);
+    }
+
+    .plan-discount {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(46, 213, 115, 0.15);
+      color: var(--success);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      border: 1px solid var(--success);
+    }
+
+    .plan-label {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .plan-price {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      direction: rtl;
+    }
+
+    .plan-unit {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .plan-monthly {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .selected-plan-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--bg-2);
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sps-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .sps-value {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .sps-price {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
     .modal-body {
       font-size: 15px;
       line-height: 1.9;
@@ -1665,6 +1793,7 @@
       color: var(--text);
       user-select: all;
       font-weight: 800;
+      cursor: copy;
     }
 
     .user-id-box {
@@ -2007,12 +2136,23 @@
 
   <div id="payment-modal" class="modal-overlay">
     <div class="modal">
-      <h3 class="modal-title">🔒 دسترسی به درس‌های ویژه</h3>
-      <div class="modal-body" id="payment-modal-body"></div>
-      <div class="modal-actions">
-        <button id="btn-copy-userid" class="modal-btn-primary">📋 کپی شناسهٔ من</button>
-        <button id="btn-enter-license" class="modal-btn-secondary">🎟️ وارد کردن کد فعال‌سازی</button>
-        <button id="btn-close-modal" class="modal-btn-secondary">بستن</button>
+      <h3 class="modal-title" id="pm-title">🔒 دسترسی به همهٔ درس‌ها</h3>
+
+      <div id="pm-body-plans">
+        <p class="pm-subtitle">یک پلن انتخاب کنید</p>
+        <div id="plan-grid" class="plan-grid"></div>
+        <div class="modal-actions">
+          <button id="btn-enter-license" class="modal-btn-secondary">🎟️ وارد کردن کد فعال‌سازی</button>
+          <button id="btn-close-modal" class="modal-btn-secondary">بستن</button>
+        </div>
+      </div>
+
+      <div id="pm-body-pay" style="display:none">
+        <div id="pm-pay-content"></div>
+        <div class="modal-actions">
+          <button id="btn-copy-order" class="modal-btn-primary">📋 کپی پیام سفارش</button>
+          <button id="btn-pm-back" class="modal-btn-secondary">↩️ بازگشت به انتخاب پلن</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2021,7 +2161,7 @@
     // ============================================================
     // CONFIG
     // ============================================================
-    const SPLASH_DURATION_MS = 3000;
+    const SPLASH_DURATION_MS = 2000;
     const DEFAULT_SPEED = 0.75;
     const LESSONS_BG = 'images/farsi3.png';
     const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp'];
@@ -2064,14 +2204,47 @@
     let fallingMusic = null;
 
     // ============================================================
+    // UTILS (early — needed by ACCESS CONTROL)
+    // ============================================================
+    const toFaNum = (n) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    }
+    function formatPrice(n) {
+      const withCommas = String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return toFaNum(withCommas);
+    }
+    function monthlyEquivalent(plan) {
+      const months = Math.round(plan.days / 30) || 1;
+      return Math.round(plan.price / months);
+    }
+    function daysRemaining(exp) {
+      if (!exp) return 0;
+      return Math.max(0, Math.ceil((exp - Date.now()) / (24 * 3600 * 1000)));
+    }
+
+    // ============================================================
     // ACCESS CONTROL — license-based paid access
     // ============================================================
     const ACCESS = {
-      config: { freeLessonsCount: 5, publicKeyJwk: null, paymentInfo: null },
+      config: {
+        freeLessonsCount: 5,
+        publicKeyJwk: null,
+        paymentInfo: null,
+        plans: [
+          { id: '1m', label: '۱ ماهه', days: 30, price: 89000 },
+          { id: '3m', label: '۳ ماهه', days: 90, price: 249000, discount: 7 },
+          { id: '6m', label: '۶ ماهه', days: 180, price: 459000, discount: 14, recommended: true },
+          { id: '12m', label: '۱ ساله', days: 365, price: 799000, discount: 25 }
+        ]
+      },
       licenses: [],
       currentUserId: null,
       isFullAccess: false,
-      licenseStatus: 'none',  // 'none' | 'valid' | 'expired' | 'mismatch' | 'invalid' | 'no-user'
+      licenseStatus: 'none',   // 'none' | 'valid' | 'expired' | 'mismatch' | 'invalid' | 'no-user'
+      expiryDate: null,
+      licensePlan: null,
+      selectedPlan: null
     };
 
     function licensePayloadToMessage(p) {
@@ -2079,7 +2252,6 @@
     }
 
     function getEitaaUserId() {
-      // ⚠️ تست لوکال: فقط روی localhost با ?test_uid=... فعال می‌شود
       try {
         const host = window.location.hostname;
         if (host === 'localhost' || host === '127.0.0.1') {
@@ -2093,18 +2265,26 @@
 
       try {
         const app = window.Eitaa && window.Eitaa.WebApp;
-        if (!app) return null;
-        const user = (app.initDataUnsafe && app.initDataUnsafe.user) || null;
-        if (user && user.id != null) return String(user.id);
-        if (app.initData) {
-          const params = new URLSearchParams(app.initData);
-          const uj = params.get('user');
-          if (uj) {
-            const u = JSON.parse(uj);
-            if (u && u.id != null) return String(u.id);
-          }
+        if (!app) {
+          console.warn('[Eitaa] window.Eitaa.WebApp not available');
+          return null;
         }
-      } catch (e) { console.warn('Eitaa initData error:', e); }
+        const unsafe = app.initDataUnsafe;
+        if (unsafe && unsafe.user && unsafe.user.id != null) return String(unsafe.user.id);
+        if (unsafe && unsafe.id != null) return String(unsafe.id);
+        if (app.initData) {
+          try {
+            const params = new URLSearchParams(app.initData);
+            const uj = params.get('user');
+            if (uj) {
+              const u = JSON.parse(uj);
+              if (u && u.id != null) return String(u.id);
+            }
+          } catch (e) { console.warn('[Eitaa] initData parse error:', e); }
+        }
+      } catch (e) {
+        console.warn('[Eitaa] getEitaaUserId error:', e);
+      }
       return null;
     }
 
@@ -2118,8 +2298,20 @@
     }
 
     async function verifyLicenseSignature(license, publicKeyJwk) {
+      if (!publicKeyJwk || !publicKeyJwk.x || !publicKeyJwk.y) {
+        throw new Error('publicKeyJwk در config.json نامعتبر است (x یا y ندارد).');
+      }
+      if (publicKeyJwk.d) {
+        throw new Error('config.json شامل کلید خصوصی است! باید publicKeyJwk (بدون d) باشد.');
+      }
+      const cleanJwk = {
+        kty: publicKeyJwk.kty || 'EC',
+        crv: publicKeyJwk.crv || 'P-256',
+        x: publicKeyJwk.x,
+        y: publicKeyJwk.y,
+      };
       const key = await crypto.subtle.importKey(
-        'jwk', publicKeyJwk,
+        'jwk', cleanJwk,
         { name: 'ECDSA', namedCurve: 'P-256' },
         false, ['verify']
       );
@@ -2133,15 +2325,20 @@
     }
 
     async function loadAccessConfig() {
+      const [configRes, licRes] = await Promise.all([
+        fetch('./config.json', { cache: 'no-store' }).catch(() => null),
+        fetch('./licenses.json', { cache: 'no-store' }).catch(() => null),
+      ]);
+
       try {
-        const res = await fetch('./config.json', { cache: 'no-store' });
-        if (res.ok) Object.assign(ACCESS.config, await res.json());
+        if (configRes && configRes.ok) {
+          Object.assign(ACCESS.config, await configRes.json());
+        }
       } catch (e) { console.warn('config.json:', e); }
 
       try {
-        const res = await fetch('./licenses.json', { cache: 'no-store' });
-        if (res.ok) {
-          const arr = await res.json();
+        if (licRes && licRes.ok) {
+          const arr = await licRes.json();
           if (Array.isArray(arr)) ACCESS.licenses = arr;
         }
       } catch (e) { console.warn('licenses.json:', e); }
@@ -2160,6 +2357,8 @@
     async function evaluateAccess(extraLicense) {
       ACCESS.isFullAccess = false;
       ACCESS.licenseStatus = 'none';
+      ACCESS.expiryDate = null;
+      ACCESS.licensePlan = null;
 
       if (!ACCESS.currentUserId) { ACCESS.licenseStatus = 'no-user'; return; }
       if (!ACCESS.config.publicKeyJwk) { return; }
@@ -2168,26 +2367,36 @@
       if (extraLicense) candidates.push(extraLicense);
       for (const lic of ACCESS.licenses) candidates.push(lic);
 
+      let bestExp = 0;
+      let bestLic = null;
+      let hasExpired = false;
+
       for (const lic of candidates) {
         if (!lic || !lic.payload || !lic.signature) continue;
         if (String(lic.payload.userId) !== String(ACCESS.currentUserId)) continue;
 
         if (lic.payload.exp && lic.payload.exp < Date.now()) {
-          if (ACCESS.licenseStatus === 'none') ACCESS.licenseStatus = 'expired';
+          hasExpired = true;
           continue;
         }
 
         try {
           const ok = await verifyLicenseSignature(lic, ACCESS.config.publicKeyJwk);
-          if (ok) {
-            ACCESS.isFullAccess = true;
-            ACCESS.licenseStatus = 'valid';
-            return;
-          } else if (ACCESS.licenseStatus === 'none') {
-            ACCESS.licenseStatus = 'invalid';
+          if (ok && lic.payload.exp > bestExp) {
+            bestExp = lic.payload.exp;
+            bestLic = lic;
           }
         } catch (e) { console.warn('verify err', e); }
       }
+
+      if (bestLic) {
+        ACCESS.isFullAccess = true;
+        ACCESS.licenseStatus = 'valid';
+        ACCESS.expiryDate = bestLic.payload.exp;
+        ACCESS.licensePlan = bestLic.payload.plan;
+        return;
+      }
+      if (hasExpired) ACCESS.licenseStatus = 'expired';
     }
 
     function isLessonLocked(lessonName) {
@@ -2197,20 +2406,38 @@
       return idx >= freeCount;
     }
 
+    function getPlanLabel(planId) {
+      const plans = ACCESS.config.plans || [];
+      const p = plans.find(x => x.id === planId);
+      return p ? p.label : null;
+    }
+
     function updateUserFooter() {
       const el = document.getElementById('user-footer');
       if (!el) return;
       const uid = ACCESS.currentUserId;
       const status = ACCESS.licenseStatus;
+
       let statusText = '🔒 نسخهٔ رایگان';
-      if (status === 'valid') statusText = '✅ دسترسی کامل';
-      else if (status === 'expired') statusText = '⏰ اشتراک منقضی';
-      else if (status === 'no-user') statusText = '⚠️ داخل ایتا باز کنید';
+      let btnLabel = 'ارتقا';
+
+      if (status === 'valid') {
+        const days = daysRemaining(ACCESS.expiryDate);
+        const planLabel = getPlanLabel(ACCESS.licensePlan);
+        statusText = `✅ اعتبار: ${toFaNum(days)} روز`;
+        if (planLabel) statusText += ` (${planLabel})`;
+        btnLabel = 'تمدید';
+      } else if (status === 'expired') {
+        statusText = '⏰ اشتراک منقضی';
+        btnLabel = 'تمدید';
+      } else if (status === 'no-user') {
+        statusText = '⚠️ داخل ایتا باز کنید';
+      }
 
       el.innerHTML = `
     <span>${statusText}</span>
     <span style="direction:ltr;font-family:monospace">${uid ? 'ID: ' + escapeHtml(uid) : ''}</span>
-    <button class="user-footer-btn" id="footer-upgrade-btn">ارتقا</button>
+    <button class="user-footer-btn" id="footer-upgrade-btn">${btnLabel}</button>
   `;
       const btn = document.getElementById('footer-upgrade-btn');
       if (btn) btn.onclick = openPaymentModal;
@@ -2218,40 +2445,143 @@
 
     function openPaymentModal() {
       const modal = document.getElementById('payment-modal');
-      const body = document.getElementById('payment-modal-body');
+      const plansBody = document.getElementById('pm-body-plans');
+      const payBody = document.getElementById('pm-body-pay');
+      const title = document.getElementById('pm-title');
+
+      plansBody.style.display = '';
+      payBody.style.display = 'none';
+      ACCESS.selectedPlan = null;
+
+      if (ACCESS.licenseStatus === 'valid') {
+        const days = daysRemaining(ACCESS.expiryDate);
+        title.textContent = `💳 تمدید اشتراک (${toFaNum(days)} روز باقی‌مانده)`;
+      } else if (ACCESS.licenseStatus === 'expired') {
+        title.textContent = '💳 تمدید اشتراک منقضی';
+      } else {
+        title.textContent = '🔒 دسترسی به همهٔ درس‌ها';
+      }
+
+      renderPlanCards();
+      modal.classList.add('active');
+    }
+
+    function renderPlanCards() {
+      const grid = document.getElementById('plan-grid');
+      const plans = ACCESS.config.plans || [];
+
+      if (plans.length === 0) {
+        grid.innerHTML = '<p class="sub" style="text-align:center;grid-column:1/-1">پلنی تنظیم نشده است.</p>';
+        return;
+      }
+
+      grid.innerHTML = plans.map(plan => {
+        const priceFa = formatPrice(plan.price);
+        const monthlyFa = formatPrice(monthlyEquivalent(plan));
+        const recommended = plan.recommended ? ' recommended' : '';
+        const badge = plan.recommended ? '<div class="plan-badge">⭐ پیشنهاد ما</div>' : '';
+        const discountBadge = plan.discount ? `<div class="plan-discount">${toFaNum(plan.discount)}٪ تخفیف</div>` : '';
+
+        return `
+      <button class="plan-card${recommended}" data-plan-id="${escapeHtml(plan.id)}">
+        ${badge}
+        ${discountBadge}
+        <div class="plan-label">${escapeHtml(plan.label)}</div>
+        <div class="plan-price">${priceFa} <span class="plan-unit">تومان</span></div>
+        <div class="plan-monthly">${monthlyFa} تومان / ماه</div>
+      </button>
+    `;
+      }).join('');
+
+      grid.querySelectorAll('.plan-card').forEach(btn => {
+        btn.addEventListener('click', () => selectPlan(btn.dataset.planId));
+      });
+    }
+
+    function selectPlan(planId) {
+      const plan = (ACCESS.config.plans || []).find(p => p.id === planId);
+      if (!plan) return;
+
+      ACCESS.selectedPlan = plan;
+
+      const plansBody = document.getElementById('pm-body-plans');
+      const payBody = document.getElementById('pm-body-pay');
+      const title = document.getElementById('pm-title');
+
+      plansBody.style.display = 'none';
+      payBody.style.display = '';
+      title.textContent = '💳 پرداخت';
+
       const info = ACCESS.config.paymentInfo || {};
       const uid = ACCESS.currentUserId;
-      const freeCount = ACCESS.config.freeLessonsCount || 0;
+      const priceFa = formatPrice(plan.price);
 
       let html = '';
-      if (ACCESS.licenseStatus === 'expired') {
-        html += `<p style="color:var(--danger);font-weight:800;text-align:center">اشتراک شما منقضی شده است.</p>`;
-      }
-      html += `<p>با پرداخت زیر، به همهٔ درس‌ها (درس ${toFaNum(freeCount + 1)} به بعد) دسترسی پیدا می‌کنید:</p>`;
 
-      if (info.amount != null) {
-        const amountFa = toFaNum(String(info.amount).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-        html += `<div class="card-info">${amountFa} تومان</div>`;
-      }
-      if (info.cardNumber) html += `<div class="card-info">${escapeHtml(info.cardNumber)}</div>`;
-      if (info.cardHolder) html += `<p style="text-align:center;font-size:13px">به نام: <strong>${escapeHtml(info.cardHolder)}</strong></p>`;
+      html += `<div class="selected-plan-summary">
+    <span class="sps-label">پلن:</span>
+    <span class="sps-value">${escapeHtml(plan.label)}</span>
+    <span class="sps-price">${priceFa} تومان</span>
+  </div>`;
 
-      html += `<p style="margin-top:16px">شناسهٔ شما در ایتا (این را برای ما بفرستید):</p>`;
-      html += `<div class="user-id-box">${uid ? escapeHtml(uid) : '—'}</div>`;
+      html += `<p style="text-align:center;margin:16px 0 10px">مبلغ <strong>${priceFa} تومان</strong> را به کارت زیر واریز کنید:</p>`;
+
+      if (info.cardNumber) {
+        html += `<div class="card-info" id="pm-card-number" data-copy="${escapeHtml(info.cardNumber)}">${escapeHtml(info.cardNumber)}</div>`;
+      }
+      if (info.cardHolder) {
+        html += `<p style="text-align:center;font-size:13px;margin-bottom:14px">به نام: <strong>${escapeHtml(info.cardHolder)}</strong></p>`;
+      }
+
+      html += `<p style="margin-top:14px">شناسهٔ شما در ایتا:</p>`;
+      html += `<div class="user-id-box" id="pm-user-id" data-copy="${uid ? escapeHtml(uid) : ''}">${uid ? escapeHtml(uid) : '—'}</div>`;
 
       if (!uid) {
-        html += `<p style="color:var(--danger);font-size:13px;text-align:center">⚠️ شناسه پیدا نشد. از داخل ایتا برنامه را باز کنید.</p>`;
+        html += `<p style="color:var(--danger);font-size:13px;text-align:center">⚠️ شناسه پیدا نشد. از داخل ایتا باز کنید.</p>`;
       }
       if (info.contact) {
-        html += `<p style="text-align:center;font-size:13px;margin-top:10px">پس از واریز، رسید و شناسه را به <strong>${escapeHtml(info.contact)}</strong> بفرستید.</p>`;
+        html += `<p style="text-align:center;font-size:13px;margin-top:14px;color:var(--muted)">پس از واریز، رسید را همراه با «پیام سفارش» به <strong>${escapeHtml(info.contact)}</strong> بفرستید.</p>`;
       }
-      html += `<p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px">پس از تأیید، کد فعال‌سازی دریافت می‌کنید.</p>`;
 
-      body.innerHTML = html;
-      modal.classList.add('active');
+      document.getElementById('pm-pay-content').innerHTML = html;
 
-      const box = body.querySelector('.user-id-box');
-      if (box && uid) box.onclick = () => copyText(uid);
+      // click-to-copy on card & user-id
+      ['pm-card-number', 'pm-user-id'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', () => {
+          const v = el.dataset.copy;
+          if (v) copyText(v);
+        });
+      });
+    }
+
+    function backToPlans() {
+      ACCESS.selectedPlan = null;
+      document.getElementById('pm-body-plans').style.display = '';
+      document.getElementById('pm-body-pay').style.display = 'none';
+      const title = document.getElementById('pm-title');
+      if (ACCESS.licenseStatus === 'valid') {
+        const days = daysRemaining(ACCESS.expiryDate);
+        title.textContent = `💳 تمدید اشتراک (${toFaNum(days)} روز باقی‌مانده)`;
+      } else if (ACCESS.licenseStatus === 'expired') {
+        title.textContent = '💳 تمدید اشتراک منقضی';
+      } else {
+        title.textContent = '🔒 دسترسی به همهٔ درس‌ها';
+      }
+    }
+
+    function copyOrderMessage() {
+      const plan = ACCESS.selectedPlan;
+      const uid = ACCESS.currentUserId;
+      if (!plan || !uid) { alert('اطلاعات ناقص است. دوباره از ابتدا تلاش کنید.'); return; }
+
+      const priceFa = formatPrice(plan.price);
+      const msg = `سلام، پرداخت انجام شد ✅
+شناسه ایتا: ${uid}
+پلن: ${plan.label} — کد: ${plan.id}
+مبلغ واریزی: ${priceFa} تومان`;
+
+      copyText(msg);
     }
 
     function copyText(text) {
@@ -2274,6 +2604,7 @@
 
     function closePaymentModal() {
       document.getElementById('payment-modal').classList.remove('active');
+      ACCESS.selectedPlan = null;
     }
 
     async function enterLicensePrompt() {
@@ -2301,9 +2632,9 @@
       }
       try {
         const ok = await verifyLicenseSignature(lic, ACCESS.config.publicKeyJwk);
-        if (!ok) { alert('امضای کد معتبر نیست.'); return; }
+        if (!ok) { alert('امضای کد معتبر نیست (کلید عمومی با کلید امضا هم‌خوان نیست).'); return; }
       } catch (e) {
-        alert('خطا در تأیید کد: ' + e.message); return;
+        alert('خطا در تأیید کد:\n' + e.message); return;
       }
       if (lic.payload.exp && lic.payload.exp < Date.now()) {
         alert('این کد منقضی شده است.'); return;
@@ -2317,13 +2648,8 @@
     }
 
     // ============================================================
-    // UTILS
+    // HELPERS (lesson parsing, words, etc.)
     // ============================================================
-    const toFaNum = (n) => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-    }
-
     function isDictValue(v) { return v && typeof v === 'object' && !Array.isArray(v); }
     function isLessonDict(v) {
       if (!v || typeof v !== 'object' || Array.isArray(v)) return false;
@@ -2394,7 +2720,6 @@
       const pairs = getWordPairs(lessonName);
       const correct = [];
       const wrong = [];
-
       for (const [cw, wl] of Object.entries(pairs)) {
         if (typeof cw === 'string' && cw.length >= 2) correct.push(cw);
         const arr = Array.isArray(wl) ? wl : (typeof wl === 'string' ? [wl] : []);
@@ -2404,7 +2729,6 @@
           }
         });
       }
-
       if (correct.length === 0) {
         const extracted = extractWordsFromSentences(lessonName, 3);
         extracted.forEach(w => {
@@ -2563,7 +2887,6 @@
       }
       return fallingMusic;
     }
-
     function startFallingMusic() {
       const m = getFallingMusic();
       if (!m) return;
@@ -2576,21 +2899,13 @@
         } catch (e) { }
       };
       try {
-        if (m.readyState >= 1) {
-          seekAndPlay();
-        } else {
-          m.addEventListener('loadedmetadata', seekAndPlay, { once: true });
-          m.load();
-        }
+        if (m.readyState >= 1) seekAndPlay();
+        else { m.addEventListener('loadedmetadata', seekAndPlay, { once: true }); m.load(); }
       } catch (e) { }
     }
-
     function stopFallingMusic() {
       if (!fallingMusic) return;
-      try {
-        fallingMusic.pause();
-        fallingMusic.currentTime = FALLING_MUSIC_START_SEC;
-      } catch (e) { }
+      try { fallingMusic.pause(); fallingMusic.currentTime = FALLING_MUSIC_START_SEC; } catch (e) { }
     }
 
     // ============================================================
@@ -2819,7 +3134,7 @@
     }
 
     // ============================================================
-    // SCRAMBLE GAME
+    // SCRAMBLE
     // ============================================================
     function startScrambleGame() {
       currentGameType = 'scramble';
@@ -2829,12 +3144,8 @@
         alert('کلمه‌ای برای بازی پیدا نشد. در فایل JSON کلید "words" را بررسی کنید.');
         return;
       }
-      scramble.active = true;
-      scramble.locked = false;
-      scramble.score = 0;
-      scramble.word = '';
-      scramble.slots = [];
-      scramble.pool = [];
+      scramble.active = true; scramble.locked = false; scramble.score = 0;
+      scramble.word = ''; scramble.slots = []; scramble.pool = [];
       document.getElementById('scramble-score').textContent = toFaNum(0);
       show('screen-game-scramble');
       nextScrambleWord();
@@ -2934,43 +3245,30 @@
       renderScramble();
     }
     function skipScramble() { if (!scramble.locked) nextScrambleWord(); }
-    function exitScrambleGame() {
-      scramble.active = false;
-      scramble.locked = false;
-      show('screen-game-select');
-    }
+    function exitScrambleGame() { scramble.active = false; scramble.locked = false; show('screen-game-select'); }
 
     // ============================================================
-    // FALLING GAME
+    // FALLING
     // ============================================================
     function startFallingGame() {
       currentGameType = 'falling';
       clearInterval(falling.timerInterval);
       clearInterval(falling.spawnInterval);
-
       const data = getFallingWords(state.lesson);
       falling.words = data;
-
       if (data.correct.length === 0) {
-        alert('کلمه‌ای برای بازی پیدا نشد. در فایل JSON کلید "words" را بررسی کنید.');
+        alert('کلمه‌ای برای بازی پیدا نشد.');
         return;
       }
-
-      falling.active = true;
-      falling.score = 0;
+      falling.active = true; falling.score = 0;
       falling.timeLeft = FALLING_DURATION_SEC;
-      falling.correctCount = 0;
-      falling.wrongCount = 0;
-      falling.wrongPicks = [];
-
+      falling.correctCount = 0; falling.wrongCount = 0; falling.wrongPicks = [];
       document.getElementById('falling-score').textContent = toFaNum(0);
       document.getElementById('falling-time').textContent = toFaNum(FALLING_DURATION_SEC);
       const area = document.getElementById('falling-area');
       area.innerHTML = '';
-
       show('screen-game-falling');
       startFallingMusic();
-
       requestAnimationFrame(() => {
         if (!falling.active) return;
         falling.spawnInterval = setInterval(spawnFallingWord, FALLING_SPAWN_MS);
@@ -2987,40 +3285,31 @@
       const area = document.getElementById('falling-area');
       if (!area) return;
       if (area.children.length >= 9) return;
-
       const { correct, wrong } = falling.words;
       if (correct.length === 0) return;
-
       let displayWord, isCorrect, correction = null;
       const hasWrong = wrong.length > 0;
-
       if (hasWrong && Math.random() < 0.5) {
         const w = wrong[Math.floor(Math.random() * wrong.length)];
-        displayWord = w.word;
-        correction = w.correct;
-        isCorrect = false;
+        displayWord = w.word; correction = w.correct; isCorrect = false;
       } else {
         displayWord = correct[Math.floor(Math.random() * correct.length)];
         isCorrect = true;
       }
       if (!displayWord) return;
-
       const el = document.createElement('button');
       el.type = 'button';
       el.className = 'falling-word';
       el.textContent = displayWord;
       el.style.visibility = 'hidden';
       area.appendChild(el);
-
       const wordWidth = el.offsetWidth;
       const areaWidth = area.clientWidth;
       const maxLeft = Math.max(0, areaWidth - wordWidth - 8);
       el.style.left = (4 + Math.random() * maxLeft) + 'px';
       el.style.visibility = '';
-
       const duration = FALLING_MIN_DURATION + Math.random() * (FALLING_MAX_DURATION - FALLING_MIN_DURATION);
       el.style.animation = `fallDown ${duration}s linear forwards`;
-
       el.addEventListener('click', () => onFallingWordClick(el, isCorrect, displayWord, correction));
       el.addEventListener('animationend', () => {
         if (!el.dataset.clicked && el.parentNode) el.remove();
@@ -3031,20 +3320,16 @@
       if (el.dataset.clicked) return;
       el.dataset.clicked = '1';
       el.style.animationPlayState = 'paused';
-
       const rect = el.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top;
-
       if (isCorrect) {
-        falling.score += 10;
-        falling.correctCount++;
+        falling.score += 10; falling.correctCount++;
         el.classList.add('hit-correct');
         el.textContent = '✓ ' + el.textContent;
         showScorePopup(cx, cy, '+۱۰', '#2ED573');
       } else {
-        falling.score = Math.max(0, falling.score - 5);
-        falling.wrongCount++;
+        falling.score = Math.max(0, falling.score - 5); falling.wrongCount++;
         if (correction) falling.wrongPicks.push({ word, correct: correction });
         el.classList.add('hit-wrong');
         el.textContent = '✗ ' + el.textContent;
@@ -3055,39 +3340,25 @@
     }
     function showScorePopup(x, y, text, color) {
       const el = document.createElement('div');
-      el.className = 'score-popup';
-      el.textContent = text;
-      el.style.left = x + 'px';
-      el.style.top = y + 'px';
-      el.style.color = color;
+      el.className = 'score-popup'; el.textContent = text;
+      el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.color = color;
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 800);
     }
-
     function populateFallingResults() {
       const details = document.getElementById('game-result-details');
       details.classList.remove('hidden');
-
       const statsHtml = `
     <div class="falling-result-stats">
-      <div class="stat-card correct">
-        <div class="stat-num">${toFaNum(falling.correctCount)}</div>
-        <div class="stat-label">✓ درست</div>
-      </div>
-      <div class="stat-card wrong">
-        <div class="stat-num">${toFaNum(falling.wrongCount)}</div>
-        <div class="stat-label">✗ اشتباه</div>
-      </div>
-    </div>
-  `;
-
+      <div class="stat-card correct"><div class="stat-num">${toFaNum(falling.correctCount)}</div><div class="stat-label">✓ درست</div></div>
+      <div class="stat-card wrong"><div class="stat-num">${toFaNum(falling.wrongCount)}</div><div class="stat-label">✗ اشتباه</div></div>
+    </div>`;
       let wrongListHtml = '';
       if (falling.wrongPicks.length > 0) {
         const seen = new Set();
         const unique = falling.wrongPicks.filter(p => {
           if (seen.has(p.word)) return false;
-          seen.add(p.word);
-          return true;
+          seen.add(p.word); return true;
         });
         wrongListHtml = `
       <div class="wrong-list">
@@ -3097,14 +3368,11 @@
             <span class="wrong-form">${escapeHtml(p.word)}</span>
             <span class="arrow">→</span>
             <span class="correct-form">${escapeHtml(p.correct)}</span>
-          </div>
-        `).join('')}
-      </div>
-    `;
+          </div>`).join('')}
+      </div>`;
       }
       details.innerHTML = statsHtml + wrongListHtml;
     }
-
     function endFallingGame() {
       if (!falling.active) return;
       falling.active = false;
@@ -3128,52 +3396,38 @@
     }
 
     // ============================================================
-    // MATCH GAME
+    // MATCH
     // ============================================================
     function startMatchGame() {
       currentGameType = 'match';
       stopFallingMusic();
-
       const allPairs = getPairWords(state.lesson);
       if (allPairs.length < 2) {
-        alert('کلمه‌های هم‌معنی کافی برای بازی پیدا نشد. کلید "pair" را در فایل JSON بررسی کنید.');
+        alert('کلمه‌های هم‌معنی کافی پیدا نشد.');
         return;
       }
-
       const selectedPairs = shuffle(allPairs).slice(0, Math.min(MATCH_PAIRS_COUNT, allPairs.length));
       match.pairs = selectedPairs;
-
       const cards = [];
       selectedPairs.forEach((p, i) => {
         cards.push({ id: 'w' + i, pairId: i, type: 'word', content: p.word, matched: false });
         cards.push({ id: 'm' + i, pairId: i, type: 'meaning', content: p.meaning, matched: false });
       });
-      match.cards = cards;
-      match.selected = [];
-      match.locked = false;
-      match.score = 0;
-      match.matched = 0;
-      match.active = true;
-
+      match.cards = cards; match.selected = []; match.locked = false;
+      match.score = 0; match.matched = 0; match.active = true;
       document.getElementById('match-score').textContent = toFaNum(0);
-
       show('screen-game-match');
       renderMatchGrid();
     }
-
     function renderMatchGrid() {
       const wordsCol = document.getElementById('match-words');
       const meaningsCol = document.getElementById('match-meanings');
-      wordsCol.innerHTML = '';
-      meaningsCol.innerHTML = '';
-
+      wordsCol.innerHTML = ''; meaningsCol.innerHTML = '';
       const wordCards = shuffle(match.cards.filter(c => c.type === 'word'));
       const meaningCards = shuffle(match.cards.filter(c => c.type === 'meaning'));
-
       wordCards.forEach((card, i) => wordsCol.appendChild(createMatchCardEl(card, i)));
       meaningCards.forEach((card, i) => meaningsCol.appendChild(createMatchCardEl(card, i)));
     }
-
     function createMatchCardEl(card, idx) {
       const el = document.createElement('button');
       el.type = 'button';
@@ -3186,21 +3440,17 @@
       el.addEventListener('click', () => onMatchCardClick(card.id));
       return el;
     }
-
     function onMatchCardClick(id) {
       if (!match.active || match.locked) return;
       const card = match.cards.find(c => c.id === id);
       if (!card || card.matched) return;
-
       const el = document.querySelector(`[data-id="${id}"]`);
       if (!el) return;
-
       if (match.selected.includes(id)) {
         match.selected = match.selected.filter(x => x !== id);
         el.classList.remove('selected');
         return;
       }
-
       const sameTypeId = match.selected.find(sid => {
         const c = match.cards.find(x => x.id === sid);
         return c && c.type === card.type;
@@ -3210,35 +3460,26 @@
         const prevEl = document.querySelector(`[data-id="${sameTypeId}"]`);
         if (prevEl) prevEl.classList.remove('selected');
       }
-
       match.selected.push(id);
       el.classList.add('selected');
-
       if (match.selected.length === 2) checkMatch();
     }
-
     function checkMatch() {
       const [id1, id2] = match.selected;
       const c1 = match.cards.find(c => c.id === id1);
       const c2 = match.cards.find(c => c.id === id2);
       if (!c1 || !c2) { match.selected = []; return; }
-
       const el1 = document.querySelector(`[data-id="${id1}"]`);
       const el2 = document.querySelector(`[data-id="${id2}"]`);
-
       if (c1.pairId === c2.pairId) {
         match.locked = true;
         if (el1) { el1.classList.remove('selected'); el1.classList.add('matched'); }
         if (el2) { el2.classList.remove('selected'); el2.classList.add('matched'); }
-        match.score += 10;
-        match.matched++;
+        match.score += 10; match.matched++;
         document.getElementById('match-score').textContent = toFaNum(match.score);
-
         setTimeout(() => {
-          c1.matched = true;
-          c2.matched = true;
-          match.selected = [];
-          match.locked = false;
+          c1.matched = true; c2.matched = true;
+          match.selected = []; match.locked = false;
           if (match.matched === match.pairs.length) setTimeout(endMatchGame, 400);
         }, 550);
       } else {
@@ -3248,12 +3489,10 @@
         setTimeout(() => {
           if (el1) el1.classList.remove('wrong', 'selected');
           if (el2) el2.classList.remove('wrong', 'selected');
-          match.selected = [];
-          match.locked = false;
+          match.selected = []; match.locked = false;
         }, 700);
       }
     }
-
     function endMatchGame() {
       if (!match.active) return;
       match.active = false;
@@ -3264,22 +3503,15 @@
         show('screen-game-result');
       }, 900);
     }
-
-    function exitMatchGame() {
-      match.active = false;
-      match.locked = false;
-      show('screen-game-select');
-    }
+    function exitMatchGame() { match.active = false; match.locked = false; show('screen-game-select'); }
 
     // ============================================================
     // EVENTS
     // ============================================================
     document.getElementById('btn-close-modal').addEventListener('click', closePaymentModal);
-    document.getElementById('btn-copy-userid').addEventListener('click', () => {
-      if (ACCESS.currentUserId) copyText(ACCESS.currentUserId);
-      else alert('شناسه‌ای پیدا نشد.');
-    });
     document.getElementById('btn-enter-license').addEventListener('click', enterLicensePrompt);
+    document.getElementById('btn-pm-back').addEventListener('click', backToPlans);
+    document.getElementById('btn-copy-order').addEventListener('click', copyOrderMessage);
     document.getElementById('payment-modal').addEventListener('click', (e) => {
       if (e.target.id === 'payment-modal') closePaymentModal();
     });
@@ -3331,7 +3563,6 @@
     document.getElementById('btn-scramble-back').addEventListener('click', exitScrambleGame);
     document.getElementById('btn-scramble-clear').addEventListener('click', clearScramble);
     document.getElementById('btn-scramble-skip').addEventListener('click', skipScramble);
-
     document.getElementById('btn-falling-back').addEventListener('click', exitFallingGame);
     document.getElementById('btn-match-back').addEventListener('click', exitMatchGame);
 
@@ -3361,15 +3592,27 @@
     // ============================================================
     // INIT
     // ============================================================
+    async function waitForEitaa(timeoutMs = 2000) {
+      const start = Date.now();
+      while (Date.now() - start < timeoutMs) {
+        if (window.Eitaa && window.Eitaa.WebApp) return true;
+        await new Promise(r => setTimeout(r, 80));
+      }
+      console.warn('[Eitaa] SDK did not appear within timeout');
+      return false;
+    }
+
     (async function init() {
       setAppBg(LESSONS_BG);
       restoreSpeed();
 
       const startTime = Date.now();
+      await waitForEitaa();
 
-      await loadAccessConfig();
-
-      const ok = await autoLoadLessons();
+      const [, ok] = await Promise.all([
+        loadAccessConfig().catch(e => { console.warn('access:', e); }),
+        autoLoadLessons().catch(e => { console.warn('lessons:', e); return false; }),
+      ]);
 
       const elapsed = Date.now() - startTime;
       if (elapsed < SPLASH_DURATION_MS) {
