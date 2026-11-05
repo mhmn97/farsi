@@ -2,10 +2,9 @@
   "freeLessonsCount": 6,
   "publicKeyJwk": {
     "kty": "EC",
-    "x": "Axo1o95cdp39fUiE6FhWfGOrMhzWpgxawG9he26Ex7Q",
-    "y": "rIfIMSVwvKkZ9xkPbO-6W4icPKOFpHjSxSaXsEWc-hc",
-    "crv": "P-256",
-    "d": "k3HZVsfBJMtKCFVJIbjClpJg6Rq3DvgnLQrlqf9UMLw"
+    "x": "afLhY77AhhXo1hThGpzBcnsH47lXgjqedQm85FLiPz8",
+    "y": "Z57lutixbyP24_jBQngBgY_ndGnCeEkGfbc8FfKOSII",
+    "crv": "P-256"
   },
   "paymentInfo": {
     "amount": 499000,
